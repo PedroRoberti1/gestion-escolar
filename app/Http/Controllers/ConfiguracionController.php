@@ -9,7 +9,7 @@ class ConfiguracionController extends Controller
 {
     public function index()
     {
-
+        //aca buscamos las fuentes para las divisas (las distintas monedasd del mundo)
         $jsonData = file_get_contents('https://api.hilariweb.com/divisas');
         $divisas = json_decode($jsonData, true);
         $configuracion = Configuracion::first();
@@ -60,7 +60,8 @@ class ConfiguracionController extends Controller
                 $configuracion->logo = 'uploads/logos/' . $nombreArchivo;
             }
             $configuracion->save();
-            return redirect()->route('admin.configuracion.index')->with('success', 'La configuración se actualizó correctamente.');
+            return redirect()->route('admin.configuracion.index')->with('mensaje', 'La configuración se actualizó correctamente.')->
+            with('icono', 'success');
         } else {
 
             //Crea una nueva configuracion!
@@ -83,7 +84,8 @@ class ConfiguracionController extends Controller
             }
 
             $configuracion->save();
-            return redirect()->route('admin.configuracion.index')->with('success', 'La configuración se actualizó correctamente.');
+            return redirect()->route('admin.configuracion.index')->with('mensaje', 'La configuración se actualizó correctamente.')
+            ->with('icono', 'success');
         }
     }
 }

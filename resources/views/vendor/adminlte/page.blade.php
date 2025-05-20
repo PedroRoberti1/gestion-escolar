@@ -16,19 +16,19 @@
     <div class="wrapper">
 
         {{-- Preloader Animation (fullscreen mode) --}}
-        @if($preloaderHelper->isPreloaderEnabled())
+        @if ($preloaderHelper->isPreloaderEnabled())
             @include('adminlte::partials.common.preloader')
         @endif
 
         {{-- Top Navbar --}}
-        @if($layoutHelper->isLayoutTopnavEnabled())
+        @if ($layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.navbar.navbar-layout-topnav')
         @else
             @include('adminlte::partials.navbar.navbar')
         @endif
 
         {{-- Left Main Sidebar --}}
-        @if(!$layoutHelper->isLayoutTopnavEnabled())
+        @if (!$layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.sidebar.left-sidebar')
         @endif
 
@@ -45,7 +45,7 @@
         @endif
 
         {{-- Right Control Sidebar --}}
-        @if($layoutHelper->isRightSidebarEnabled())
+        @if ($layoutHelper->isRightSidebarEnabled())
             @include('adminlte::partials.sidebar.right-sidebar')
         @endif
 
@@ -55,4 +55,18 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+
+    {{-- ENVIO DE MENSAJE AL MOMENTO DE BORRAR UNA GESTION EDUCATIVA --}}
+
+    @if (($mensaje = Session::get('mensaje')) && ($icono = Session::get('icono')))
+        <script>
+            Swal.fire({
+                position: "top-end",
+                icon: "{{ $icono }}",
+                title: "{{ $mensaje }}",
+                showConfirmButton: false,
+                timer: 4000
+            });
+        </script>
+    @endif
 @stop

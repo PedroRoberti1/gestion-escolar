@@ -8,3 +8,8 @@ Table configuraciones{
     web varchar
     logo varchar
 }
+
+Table gestiones{
+    id int [pk, increment] // Primary key
+    nombre varchar
+}
