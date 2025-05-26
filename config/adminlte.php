@@ -315,6 +315,14 @@ return [
             'icon'=>'fas fa-fw fa-tasks',
             'classes'=> 'bg-blue text white',
         ],
+        
+        [
+            'text'=>'Niveles',
+            'url'=>'admin/niveles', 
+            'icon'=>'fas fa-fw fa-layer-group',
+            'classes'=> 'bg-blue text white',
+        ],
+
 
     ],
 

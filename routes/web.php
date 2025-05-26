@@ -3,7 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\GestionController;
+use App\Http\Controllers\NivelController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,4 +35,15 @@ Route::middleware('auth')->group(function () {
     route::get('/admin/gestiones/{id}/edit', [GestionController::class, 'edit'])->name('admin.gestiones.edit');
     route::put('/admin/gestiones/{id}', [GestionController::class, 'update'])->name('admin.gestiones.update ');
     route::delete('/admin/gestiones/{id}', [GestionController::class, 'destroy'])->name('admin.gestiones.destroy ');
+});
+
+
+//rutas para los niveles del sistema
+Route::middleware('auth')->group(function () {
+    //Ruta para la seccion de configuracion(seccion principal)
+    route::get('/admin/niveles', [NivelController::class, 'index'])->name('admin.niveles.index');
+    //ruta para la seccion de crear una nueva gestion educativa
+    route::post('/admin/niveles/create', [NivelController::class, 'store'])->name('admin.niveles.store');    
+    route::put('/admin/niveles/{id}', [NivelController::class, 'update'])->name('admin.niveles.update ');
+    route::delete('/admin/niveles/{id}', [NivelController::class, 'destroy'])->name('admin.niveles.destroy ');
 });
