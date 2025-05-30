@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\NivelController;
+use App\http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,7 +44,20 @@ Route::middleware('auth')->group(function () {
     //Ruta para la seccion de configuracion(seccion principal)
     route::get('/admin/niveles', [NivelController::class, 'index'])->name('admin.niveles.index');
     //ruta para la seccion de crear una nueva gestion educativa
-    route::post('/admin/niveles/create', [NivelController::class, 'store'])->name('admin.niveles.store');    
+    route::post('/admin/niveles/create', [NivelController::class, 'store'])->name('admin.niveles.store');
     route::put('/admin/niveles/{id}', [NivelController::class, 'update'])->name('admin.niveles.update ');
     route::delete('/admin/niveles/{id}', [NivelController::class, 'destroy'])->name('admin.niveles.destroy ');
+});
+
+
+//rutas para los turnos del sistema
+Route::middleware('auth')->group(function () {
+    //Ruta para la seccion de configuracion(seccion principal)
+    route::get('/admin/turnos', [TurnoController::class, 'index'])->name('admin.turnos.index');
+    //ruta para la seccion de crear una nueva gestion educativa
+    route::get('/admin/turnos/create', [TurnoController::class, 'create'])->name('admin.turnos.create');
+    route::post('/admin/turnos/create', [TurnoController::class, 'store'])->name('admin.turnos.store');
+    route::get('/admin/turnos/{id}/edit', [TurnoController::class, 'edit'])->name('admin.turnos.edit');
+    route::put('/admin/turnos/{id}', [TurnoController::class, 'update'])->name('admin.turnos.update ');
+    route::delete('/admin/turnos/{id}', [TurnoController::class, 'destroy'])->name('admin.turnos.destroy ');
 });
