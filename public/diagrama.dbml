@@ -15,6 +15,13 @@ Table gestiones{
 }
 
 
+Table periodo[
+    id int [pk, increment]// Primary key
+    nombre varchar
+    gestion_id int [ref:> gestiones.id]
+    
+]
+
 Table niveles{
     id int [pk, increment] //Primary key
     nombre varchar

@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\NivelController;
+use App\Http\Controllers\PeriodoController;
 use App\http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,4 +61,15 @@ Route::middleware('auth')->group(function () {
     route::get('/admin/turnos/{id}/edit', [TurnoController::class, 'edit'])->name('admin.turnos.edit');
     route::put('/admin/turnos/{id}', [TurnoController::class, 'update'])->name('admin.turnos.update ');
     route::delete('/admin/turnos/{id}', [TurnoController::class, 'destroy'])->name('admin.turnos.destroy ');
+});
+
+
+//rutas para los periodos del sistema
+Route::middleware('auth')->group(function () {
+    //Ruta para la seccion de configuracion(seccion principal)
+    route::get('/admin/periodos', [PeriodoController::class, 'index'])->name('admin.periodos.index');
+    //ruta para la seccion de crear una nueva gestion educativa
+    Route::post('/admin/periodos/store', [PeriodoController::class, 'store'])->name('admin.periodos.store');
+    route::put('/admin/periodos/{id}', [PeriodoController::class, 'update'])->name('admin.periodos.update ');
+    route::delete('/admin/periodos/{id}', [PeriodoController::class, 'destroy'])->name('admin.periodos.destroy ');
 });

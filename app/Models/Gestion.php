@@ -13,4 +13,8 @@ class Gestion extends Model
     ];
 
 
+    public function periodos()
+    {
+        return $this->hasMany(Periodo::class);
+    }
 }
