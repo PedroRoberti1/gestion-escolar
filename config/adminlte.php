@@ -331,6 +331,13 @@ return [
         ],
 
         [
+            'text'=>'Grados',
+            'url'=>'admin/grados',
+            'icon'=>'fas fa-fw fa-list-alt',
+            'classes'=> 'bg-blue text white',
+        ],
+
+        [
             'text'=>'Turnos',
             'url'=>'admin/turnos',
             'icon'=>'fas fa-fw  fa-clock',

@@ -22,6 +22,15 @@ Table periodo[
     
 ]
 
+
+Table grados{
+    id int [pk, increment]// Primary key
+    nombre varchar
+    nivel_id int [ref: > niveles.id]
+
+
+
+}
 Table niveles{
     id int [pk, increment] //Primary key
     nombre varchar

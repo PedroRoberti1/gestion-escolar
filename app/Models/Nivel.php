@@ -11,4 +11,9 @@ class Nivel extends Model
     protected $fillable=[
         'nombre'
     ];
+
+    public function grados()
+    {
+        return $this->hasMany(Grado::class);
+    }
 }
