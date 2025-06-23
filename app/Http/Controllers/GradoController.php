@@ -44,6 +44,14 @@ class GradoController extends Controller
             'nombre_create' => 'required|',
         ]);
 
+        // Busca si ya existe un grado con el mismo nombre dentro del nivel seleccionado
+        $existe = Grado::where('nivel_id', $request->nivel)->where('nombre', $request->nombre_create)->exists();
+        // Si ya existe, vuelve atrás con un mensaje de error y conserva los datos ingresados
+
+        if ($existe) {
+            return back()->withErrors(['nombre_create' => 'Este Grado ya existe dentro de el nivel seleccionado'])->withInput();
+        }
+
         $grado = new Grado();
         $grado->nombre = $request->nombre_create;
         $grado->nivel_id = $request->nivel;
@@ -80,11 +88,17 @@ class GradoController extends Controller
         $grado_update = Grado::findOrFail($id);
 
         // Validar los datos enviados desde el formulario
-        $validator = Validator::make($request->all(),[
-            'nivel'=> 'required|exists:nivels,id',
-            'nombre_update' =>'required|',
-            
+        $validator = Validator::make($request->all(), [
+            'nivel' => 'required|exists:nivels,id',
+            'nombre_update' => 'required|',
+
         ]);
+
+        $existe = Grado::where('nivel_id', $request->nivel)->where('nombre', $request->nombre_update)->exists();
+
+        if ($existe) {
+            return back()->withErrors(['nombre_update' => 'Ese grado ya existe'])->withInput();
+        }
 
         // Si hay errores de validación, volver atrás con los errores, los datos del formulario y el ID del modal
         if ($validator->fails()) {
@@ -117,4 +131,3 @@ class GradoController extends Controller
         return redirect()->route('admin.grados.index');
     }
 }
- 

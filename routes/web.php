@@ -8,6 +8,7 @@ use App\Http\Controllers\NivelController;
 use App\Http\Controllers\PeriodoController;
 use App\http\Controllers\TurnoController;
 use App\http\Controllers\GradoController;
+use App\http\Controllers\ParaleloController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -95,4 +96,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/grados/store', [GradoController::class, 'store'])->name('admin.grados.store');
     route::put('/admin/grados/{id}', [GradoController::class, 'update'])->name('admin.grados.update ');
     route::delete('/admin/grados/{id}', [GradoController::class, 'destroy'])->name('admin.grados.destroy ');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    //Ruta para la seccion de configuracion(seccion principal)
+    route::get('/admin/paralelos', [ParaleloController::class, 'index'])->name('admin.paralelos.index');
+    //ruta para la seccion de crear una nueva gestion educativa
+    Route::post('/admin/paralelos/store', [ParaleloController::class, 'store'])->name('admin.paralelos.store');
+    route::put('/admin/paralelos/{id}', [ParaleloController::class, 'update'])->name('admin.paralelos.update ');
+    route::delete('/admin/paralelos/{id}', [ParaleloController::class, 'destroy'])->name('admin.paralelos.destroy ');
 });

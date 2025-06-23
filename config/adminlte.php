@@ -302,46 +302,55 @@ return [
         // Navbar items:
 
         [
-            'text'=> 'Configuracion',
-            'url'=> 'admin/configuracion',
-            'icon'=> 'fas fa-fw fa-cog',
-            'classes'=> 'bg-blue text-white',
+            'text' => 'Configuracion',
+            'url' => 'admin/configuracion',
+            'icon' => 'fas fa-fw fa-cog',
+            'classes' => 'bg-blue text-white',
 
         ],
 
         [
-            'text'=>'Gestiones',
-            'url'=>'admin/gestiones',
-            'icon'=>'fas fa-fw fa-tasks',
-            'classes'=> 'bg-blue text white',
-        ],
-        
-
-        [
-            'text'=>'Periodos',
-            'url'=>'admin/periodos',
-            'icon'=>'fas fa-fw fa-calendar-alt',
-            'classes'=>'bg-blue text white',
-        ],
-        [
-            'text'=>'Niveles',
-            'url'=>'admin/niveles', 
-            'icon'=>'fas fa-fw fa-layer-group',
-            'classes'=> 'bg-blue text white',
+            'text' => 'Gestiones',
+            'url' => 'admin/gestiones',
+            'icon' => 'fas fa-fw fa-tasks',
+            'classes' => 'bg-blue text white',
         ],
 
+
         [
-            'text'=>'Grados',
-            'url'=>'admin/grados',
-            'icon'=>'fas fa-fw fa-list-alt',
-            'classes'=> 'bg-blue text white',
+            'text' => 'Periodos',
+            'url' => 'admin/periodos',
+            'icon' => 'fas fa-fw fa-calendar-alt',
+            'classes' => 'bg-blue text white',
+        ],
+        [
+            'text' => 'Niveles',
+            'url' => 'admin/niveles',
+            'icon' => 'fas fa-fw fa-layer-group',
+            'classes' => 'bg-blue text white',
+        ],
+
+
+        [
+            'text' => 'Grados',
+            'url' => 'admin/grados',
+            'icon' => 'fas fa-fw fa-list-alt',
+            'classes' => 'bg-blue text white',
         ],
 
         [
-            'text'=>'Turnos',
-            'url'=>'admin/turnos',
-            'icon'=>'fas fa-fw  fa-clock',
-            'classes'=> 'bg-blue text-white',
+            'text' => 'Paralelos',
+            'url' => 'admin/paralelos',
+            'icon' => 'fas fa-fw fa-clone',
+            'classes' => 'bg-blue text white',
+        ],
+
+
+        [
+            'text' => 'Turnos',
+            'url' => 'admin/turnos',
+            'icon' => 'fas fa-fw  fa-clock',
+            'classes' => 'bg-blue text-white',
         ],
 
 
@@ -427,20 +436,20 @@ return [
                 ],
             ],
         ],
-        'Sweetalert2'=>[
-            'active'=> true,
-            'files'=>[
+        'Sweetalert2' => [
+            'active' => true,
+            'files' => [
                 [
-                'type'=>'js',
-                'asset'=>true,
-                'location'=> 'https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js',
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css',
+                ],
             ],
-            [
-                'type'=>'css',
-                'asset'=> true,
-                'location'=>'https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css',
-            ],
-        ],
         ],
         'Pace' => [
             'active' => false,

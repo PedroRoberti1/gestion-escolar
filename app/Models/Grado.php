@@ -24,4 +24,8 @@ class Grado extends Model
     public function nivel(){
         return $this->belongsTo(Nivel::class);
     }
+
+    public function paralelos(){
+        return $this->hasMany(Paralelo::class);
+    }
 }
