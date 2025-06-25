@@ -353,6 +353,12 @@ return [
             'classes' => 'bg-blue text-white',
         ],
 
+        [
+            'text'=>'Materias',
+            'url'=>'admin/materias',
+            'icon'=>'fas fa-fw fa-book',
+            'classes'=>'bg-blue text-white',
+        ],
 
     ],
 

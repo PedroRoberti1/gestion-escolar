@@ -9,6 +9,7 @@ use App\Http\Controllers\PeriodoController;
 use App\http\Controllers\TurnoController;
 use App\http\Controllers\GradoController;
 use App\http\Controllers\ParaleloController;
+use App\http\Controllers\MateriaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -107,4 +108,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/paralelos/store', [ParaleloController::class, 'store'])->name('admin.paralelos.store');
     route::put('/admin/paralelos/{id}', [ParaleloController::class, 'update'])->name('admin.paralelos.update ');
     route::delete('/admin/paralelos/{id}', [ParaleloController::class, 'destroy'])->name('admin.paralelos.destroy ');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    //Ruta para la seccion de configuracion(seccion principal)
+    route::get('/admin/materias', [MateriaController::class, 'index'])->name('admin.materias.index');
+    //ruta para la seccion de crear una nueva gestion educativa
+    Route::post('/admin/materias/store', [MateriaController::class, 'store'])->name('admin.materias.store');
+    route::put('/admin/materias/{id}', [MateriaController::class, 'update'])->name('admin.materias.update ');
+    route::delete('/admin/materias/{id}', [MateriaController::class, 'destroy'])->name('admin.materias.destroy ');
 });
