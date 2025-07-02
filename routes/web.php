@@ -6,10 +6,11 @@ use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\PeriodoController;
-use App\http\Controllers\TurnoController;
-use App\http\Controllers\GradoController;
-use App\http\Controllers\ParaleloController;
-use App\http\Controllers\MateriaController;
+use App\Http\Controllers\TurnoController;
+use App\Http\Controllers\GradoController;
+use App\Http\Controllers\ParaleloController;
+use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register'=> false]);
+Auth::routes(['register' => false]);
 
 // Ruta que apunta a /home y muestra el dashboard del administrador.
 // Usa el método 'index' del AdminController.
@@ -30,7 +31,7 @@ Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->nam
 // Es idéntica a la anterior en funcionalidad, pero con una URL y nombre de ruta diferentes.
 // Se usa para permitir múltiples accesos al mismo contenido y reutilizar el método del controlador.
 // Se le asigna el nombre 'admin.index' para usar con route('admin.index')
-Route::get('/admin',[App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
 
 //rutas para Las configuraciones del sistema 
@@ -73,6 +74,9 @@ Route::middleware('auth')->group(function () {
     //ruta para la seccion de crear una nueva gestion educativa
     route::get('/admin/turnos/create', [TurnoController::class, 'create'])->name('admin.turnos.create');
     route::post('/admin/turnos/create', [TurnoController::class, 'store'])->name('admin.turnos.store');
+
+
+
     route::get('/admin/turnos/{id}/edit', [TurnoController::class, 'edit'])->name('admin.turnos.edit');
     route::put('/admin/turnos/{id}', [TurnoController::class, 'update'])->name('admin.turnos.update ');
     route::delete('/admin/turnos/{id}', [TurnoController::class, 'destroy'])->name('admin.turnos.destroy ');
@@ -119,4 +123,25 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/materias/store', [MateriaController::class, 'store'])->name('admin.materias.store');
     route::put('/admin/materias/{id}', [MateriaController::class, 'update'])->name('admin.materias.update ');
     route::delete('/admin/materias/{id}', [MateriaController::class, 'destroy'])->name('admin.materias.destroy ');
+});
+
+
+
+
+Route::middleware('auth')->group(function () {
+    //Ruta para la seccion de configuracion(seccion principal)
+    Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
+
+
+    //ruta para la seccion de crear una nueva gestion educativa
+    Route::get('/admin/roles/create', [RoleController::class, 'create'])->name('admin.roles.create');
+    Route::post('/admin/roles/create', [RoleController::class, 'store'])->name('admin.roles.store');
+
+    Route::get('/admin/roles/{id}/edit', [RoleController::class, 'edit'])->name('admin.roles.edit ');
+    Route::put('/admin/roles/permisos/{id}', [RoleController::class, 'permisos'])->name('admin.roles.permisos ');
+    Route::put('/admin/roles/{id}',[RoleController::class, 'update'])->name('admin.roles.update ');
+    
+    Route::delete('/admin/roles/{id}', [RoleController::class, 'destroy'])->name('admin.roles.destroy ');
+
+
 });

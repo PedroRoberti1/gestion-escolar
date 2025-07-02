@@ -360,6 +360,12 @@ return [
             'classes'=>'bg-blue text-white',
         ],
 
+        [
+            'text'=>'Roles',
+            'icon'=>'fas fa-fw fa-user-check',
+            'classes'=>'bg-blue text-white',
+            'url'=>'admin/roles',
+        ]
     ],
 
     /*

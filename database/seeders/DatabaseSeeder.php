@@ -9,13 +9,17 @@ use App\Models\Periodo;
 use App\Models\Grado;
 use App\Models\Paralelo;
 use App\Models\Turno;
+use App\Models\Materia;
 use App\Models\User;
+
+$this->call(MateriasTableSeeder::class);
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
+    
     /**
      * Seed the application's database.
      */
@@ -89,5 +93,8 @@ class DatabaseSeeder extends Seeder
 
         Turno::create(['nombre'=>'mañana']);
         Turno::create(['nombre'=>'tarde']);
+
+
+
     }
 }
