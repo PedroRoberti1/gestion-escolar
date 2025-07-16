@@ -10,6 +10,7 @@ use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\ParaleloController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -93,7 +94,7 @@ Route::middleware('auth')->group(function () {
     route::delete('/admin/periodos/{id}', [PeriodoController::class, 'destroy'])->name('admin.periodos.destroy ');
 });
 
-
+// rutas para los grados 
 Route::middleware('auth')->group(function () {
     //Ruta para la seccion de configuracion(seccion principal)
     route::get('/admin/grados', [GradoController::class, 'index'])->name('admin.grados.index');
@@ -104,6 +105,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
+//rutas para los paralelos
 
 Route::middleware('auth')->group(function () {
     //Ruta para la seccion de configuracion(seccion principal)
@@ -115,7 +117,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
+//rutas para las materias
 Route::middleware('auth')->group(function () {
     //Ruta para la seccion de configuracion(seccion principal)
     route::get('/admin/materias', [MateriaController::class, 'index'])->name('admin.materias.index');
@@ -127,7 +129,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-
+//rutas para LOS roles.
 Route::middleware('auth')->group(function () {
     //Ruta para la seccion de configuracion(seccion principal)
     Route::get('/admin/roles', [RoleController::class, 'index'])->name('admin.roles.index');
@@ -139,9 +141,26 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/roles/{id}/edit', [RoleController::class, 'edit'])->name('admin.roles.edit ');
     Route::put('/admin/roles/permisos/{id}', [RoleController::class, 'permisos'])->name('admin.roles.permisos ');
-    Route::put('/admin/roles/{id}',[RoleController::class, 'update'])->name('admin.roles.update ');
-    
+    Route::put('/admin/roles/{id}', [RoleController::class, 'update'])->name('admin.roles.update ');
+
     Route::delete('/admin/roles/{id}', [RoleController::class, 'destroy'])->name('admin.roles.destroy ');
+});
 
+//rutas para el PERSONAL del sistema.
 
+Route::middleware('auth')->group(function () {
+
+    route::get('/admin/personal/{tipo}', [PersonalController::class, 'index'])->name('admin.personal.index');
+
+    Route::get('/admin/personal/create/{tipo}', [PersonalController::class, 'create'])->name('admin.personal.create');
+
+    Route::post('/admin/personal/create', [PersonalController::class, 'store'])->name('admin.personal.store');
+
+    route::get('/admin/personal/show/{id}', [PersonalController::class, 'show'])->name('admin.personal.show');
+
+    route::get('/admin/personal/{id}/edit', [PersonalController::class, 'edit'])->name('admin.personal.edit');
+
+    route::put('/admin/personal/{id}', [PersonalController::class, 'update'])->name('admin.personal.update');
+
+    route::delete('/admin/personal/{id}', [PersonalController::class, 'destroy'])->name('admin.personal.destroy');
 });

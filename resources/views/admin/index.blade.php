@@ -75,6 +75,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box zoomP">
+                <img src="{{ url('/img/roles.gif') }}" width="70px">
+                <div class="info-box-content">
+                    <span class="info-box-text"><b>Roles registrados</b></span>
+                    <span class="info-box-number" style="color: brown; font-size:15pt">{{ $total_roles }}
+                        rol</span>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
 

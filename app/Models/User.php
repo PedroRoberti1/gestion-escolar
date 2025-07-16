@@ -46,4 +46,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relación uno a uno: un usuario tiene un único registro asociado en la tabla personals.
+     * Laravel asumirá que la clave foránea en la tabla 'personals' es 'user_id'.
+     */
+    public function personal()
+    {
+        return $this->hasOne(Personal::class);
+    }
 }
