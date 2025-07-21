@@ -65,5 +65,17 @@ Table personals{
     direccion varchar
     telefono varchar
     profesion varchar
-    foto varchar
+    foto varchar    
 }
+
+Table Formaciones {
+    id int [pk, increment] // Primary key
+    personal_id int [ref: > personals.id]
+    titulo varchar
+    institucion varchar
+    nivel varchar
+    fecha_graduacion date
+    archivo varchar
+}
+
+

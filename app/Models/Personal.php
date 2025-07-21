@@ -26,4 +26,11 @@ class Personal extends Model
         // El modelo actual (Personal) pertenece a un usuario (User).
         return $this->belongsTo(User::class);
     }
+
+    // un personal puede tener varias formaciones 
+    public function formaciones()
+    {
+        return $this->hasMany(Formacion::class);
+    }
+
 }

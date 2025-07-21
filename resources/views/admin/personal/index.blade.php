@@ -40,11 +40,10 @@
                                     <th class="text-center">Rol</th>
                                     <th class="text-center">Apellidos y nombres</th>
                                     <th class="text-center">Carnet de identidad</th>
-                                    <th class="text-center">Fecha de nacimiento</th>
                                     <th class="text-center">Teléfono</th>
                                     <th class="text-center">Dirección</th>
                                     <th class="text-center">Profesión</th>
-                                    <th class="text-center">Correo</th>
+                                    <th class="text-center">Correo</th>  
                                     <th class="text-center">Foto</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -57,7 +56,6 @@
                                         <td>{{ $personal->usuario->roles->pluck('name')->implode(', ') }}</td>
                                         <td>{{ $personal->apellidos }} {{ $personal->nombres }}</td>
                                         <td>{{ $personal->ci }}</td>
-                                        <td>{{ $personal->fecha_nacimiento }}</td>
                                         <td>{{ $personal->telefono }}</td>
                                         <td>{{ $personal->direccion }}</td>
                                         <td>{{ $personal->profesion }}</td>
@@ -67,7 +65,9 @@
                                         </td>
                                         <td class="text">
                                             <div class="row d-flex justify-content-center">
+                                            <a href="{{url('/admin/personal/'. $personal->id.'/formaciones')}}" class="btn btn-warning btn-sm"><i class="fas fa-tasks"></i>Formaciones</a>
                                             <a href="{{url('/admin/personal/show/'. $personal->id)}}" class="btn btn-grey btn-sm"><i class="fas fa-eye"></i>Ver</a>
+                                            
                                                 <a href="{{ url('/admin/personal/' . $personal->id . '/edit') }}"
                                                     class="btn btn-success btn-sm"> <i
                                                         class="fas fa-pencil-alt"></i>Editar</a>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\FormacionController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\PeriodoController;
@@ -163,4 +164,16 @@ Route::middleware('auth')->group(function () {
     route::put('/admin/personal/{id}', [PersonalController::class, 'update'])->name('admin.personal.update');
 
     route::delete('/admin/personal/{id}', [PersonalController::class, 'destroy'])->name('admin.personal.destroy');
+});
+
+// RUTAS para la FORMACION del personal.
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/admin/personal/{id}/formaciones', [FormacionController::class, 'index'])->name('admin.formaciones.index');
+    Route::get('/admin/personal/{id}/formaciones/create', [FormacionController::class, 'create'])->name('admin.formaciones.create');
+    Route::post('/admin/personal/{id}/formaciones/create', [FormacionController::class, 'store'])->name('admin.formaciones.store');
+    Route::get('/admin/personal/formaciones/{id}',[FormacionController::class, 'edit'])->name('admin.formaciones.edit');
+    Route::put('/admin/personal/formaciones/{id}',[FormacionController::class, 'update'])->name('admin.formaciones.update');
+    Route::delete('/admin/personal/formaciones/{id}',[FormacionController::class, 'destroy'])->name('admin.formaciones.destroy');
 });

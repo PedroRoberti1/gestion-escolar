@@ -9,6 +9,7 @@ use App\Models\Periodo;
 use App\Models\Grado;
 use App\Models\Paralelo;
 use App\Models\Turno;
+use App\Models\Personal;
 use App\Models\User;
 
 
@@ -95,5 +96,63 @@ class DatabaseSeeder extends Seeder
 
         Turno::create(['nombre' => 'mañana']);
         Turno::create(['nombre' => 'tarde']);
+
+        User::create([
+            'name' => 'Ana Torres',
+            'email' => 'ana.torres@escuela.com',
+            'password' => Hash::make('65432109*'),
+        ])->assignRole('DIRECTOR/A');
+
+        Personal::create([
+            'usuario_id' => 2,
+            'tipo' => 'administrativo',
+            'nombres' => 'Ana',
+            'apellidos' => 'Torres',
+            'ci' => '65432109',
+            'fecha_nacimiento' => '1992-03-30',
+            'direccion' => 'Av. Bolívar 789',
+            'telefono' => '54321098',
+            'profesion' => 'Lic. en Administración',
+            'foto' => 'uploads/fotos/' . time() . '_ana.jpg',
+        ]);
+
+        User::create([
+            'name' => 'Marta Giménez',
+            'email' => 'marta.gimenez@escuela.com',
+            'password' => Hash::make('40012789'),
+        ])->assignRole('SECRETARIO/A');
+
+        Personal::create([
+            'usuario_id' => 2,
+            'tipo' => 'administrativo',
+            'nombres' => 'Marta',
+            'apellidos' => 'Giménez',
+            'ci' => '40012789',
+            'fecha_nacimiento' => '1990-11-23',
+            'direccion' => 'Calle Mendoza 234',
+            'telefono' => '56789012',
+            'profesion' => 'Secretaria Ejecutiva',
+            'foto' => 'uploads/fotos/' . time() . '_marta.jpg',
+        ]);
+
+
+        User::create([
+            'name' => 'Diego Fernández',
+            'email' => 'diego.fernandez@escuela.com',
+            'password' => Hash::make('29875631'),
+        ])->assignRole('PRECEPTOR/A');
+
+        Personal::create([
+            'usuario_id' => 3,  
+            'tipo' => 'administrativo',
+            'nombres' => 'Diego',
+            'apellidos' => 'Fernández',
+            'ci' => '29875631',
+            'fecha_nacimiento' => '1980-04-10',
+            'direccion' => 'Av. San Martín 132',
+            'telefono' => '43210987',
+            'profesion' => 'PRECEPTOR/A',
+            'foto' => 'uploads/fotos/' . time() . '_diego.jpg',
+        ]);
     }
 }
