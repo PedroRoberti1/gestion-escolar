@@ -13,6 +13,8 @@ use App\Http\Controllers\ParaleloController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\PpffController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -173,7 +175,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/personal/{id}/formaciones', [FormacionController::class, 'index'])->name('admin.formaciones.index');
     Route::get('/admin/personal/{id}/formaciones/create', [FormacionController::class, 'create'])->name('admin.formaciones.create');
     Route::post('/admin/personal/{id}/formaciones/create', [FormacionController::class, 'store'])->name('admin.formaciones.store');
-    Route::get('/admin/personal/formaciones/{id}',[FormacionController::class, 'edit'])->name('admin.formaciones.edit');
-    Route::put('/admin/personal/formaciones/{id}',[FormacionController::class, 'update'])->name('admin.formaciones.update');
-    Route::delete('/admin/personal/formaciones/{id}',[FormacionController::class, 'destroy'])->name('admin.formaciones.destroy');
+    Route::get('/admin/personal/formaciones/{id}', [FormacionController::class, 'edit'])->name('admin.formaciones.edit');
+    Route::put('/admin/personal/formaciones/{id}', [FormacionController::class, 'update'])->name('admin.formaciones.update');
+    Route::delete('/admin/personal/formaciones/{id}', [FormacionController::class, 'destroy'])->name('admin.formaciones.destroy');
+});
+
+
+//RUTAS PARA LOS ESTUDIANTES
+Route::middleware('auth')->group(function () {
+
+    Route::get('/admin/estudiantes', [EstudianteController::class, 'index'])->name('admin.estudiantes.index');
+    Route::get('/admin/estudiantes/create', [EstudianteController::class, 'create'])->name('admin.estudiantes.create');
+    Route::post('/admin/estudiantes/create', [EstudianteController::class, 'store'])->name('admin.estudiantes.store');
+    Route::get('/admin/estudiantes/{id}',[EstudianteController::class, 'show'])->name('admin.estudiantes.show');
+    Route::get('/admin/estudiantes/{id}/edit',[EstudianteController::class,'edit'])->name('admin.estudiantes.edit');
+    Route::put('/admin/estudiantes/{id}',[EstudianteController::class,'update'])->name('admin.estudiantes.update');
+    Route::delete('/admin/estudiantes/{id}',[EstudianteController::class,'destroy'])->name('admin.estudiantes.destroy');
+    
+});
+
+//Ruta para registrar al padre de familia del estudiante
+
+Route::middleware('auth')->group(function () {
+
+    Route::post('/admin/estudiantes/ppff/create', [PpffController::class, 'store'])->name('admin.ppffs.store');
+    
+    
+
 });

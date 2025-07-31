@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1><b>Listado de personal {{ $tipo }}</b></h1>
+    <h1><b>Listado de Estudiantes</b></h1>
     <hr>
 
 
@@ -14,13 +14,13 @@
         <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Personal {{ $tipo }} registrados</h3>
+                    <h3 class="card-title">Estudiantes registrados</h3>
                     <div class="card-tools">
 
                         <div class="card-tools">
-                            <a href="{{ url('/admin/personal/create/' . $tipo) }}" method="post" class="btn btn-primary">Crear
-                                nuevo
-                                {{ $tipo }}</a>
+                            <a href="{{ url('/admin/estudiantes/create') }}" method="post"
+                                class="btn btn-primary">Crear
+                                nuevo estudiante</a>
                         </div>
 
 
@@ -37,57 +37,55 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">Nro</th>
-                                    <th class="text-center">Rol</th>
-                                    <th class="text-center">Apellidos y nombres</th>
+                                    <th class="text-center">Estudiante</th>
                                     <th class="text-center">Carnet de identidad</th>
+                                    <th class="text-center">Fecha de nacimiento</th>
                                     <th class="text-center">Teléfono</th>
-                                    <th class="text-center">Dirección</th>
-                                    <th class="text-center">Profesión</th>
+                                    <th class="text-center">Genero</th>
                                     <th class="text-center">Correo</th>
                                     <th class="text-center">Foto</th>
+
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Iteramos sobre todos los niveles pasados desde el controlador -->
-                                @foreach ($personals as $personal)
+                                @foreach ($estudiantes as $estudiante)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $estudiante->apellidos }} {{ $estudiante->nombres }}</td>
+                                        <td>{{ $estudiante->ci }}</td>
+                                        <td>{{ $estudiante->fecha_nacimiento }}</td>
+                                        <td>{{ $estudiante->telefono }}</td>
+                                        <td>{{ $estudiante->genero }}</td>
+                                        <td>{{$estudiante->usuario->email}}</td>
+
                                         <td>
-                                            {{ optional($personal->usuario->getRoleNames())->first() ?? 'Sin rol' }}
-                                        </td>
-                                        <td>{{ $personal->apellidos }} {{ $personal->nombres }}</td>
-                                        <td>{{ $personal->ci }}</td>
-                                        <td>{{ $personal->telefono }}</td>
-                                        <td>{{ $personal->direccion }}</td>
-                                        <td>{{ $personal->profesion }}</td>
-                                        <td>{{ $personal->usuario->email }}</td>
-                                        <td>
-                                            <img src="{{ url($personal->foto) }}" width="100px" alt="foto">
+                                            <img src="{{ url($estudiante->foto) }}" width="100px" alt="foto">
                                         </td>
                                         <td class="text">
                                             <div class="row d-flex justify-content-center">
-                                                <a href="{{ url('/admin/personal/' . $personal->id . '/formaciones') }}"
-                                                    class="btn btn-warning btn-sm"><i
-                                                        class="fas fa-tasks"></i>Formaciones</a>
-                                                <a href="{{ url('/admin/personal/show/' . $personal->id) }}"
-                                                    class="btn btn-grey btn-sm"><i class="fas fa-eye"></i>Ver</a>
+                                                <a href="{{url('/admin/estudiantes/'.$estudiante->id)}}"
+                                                    class="btn btn-grey btn-sm"><i class="fas fa-eye">
 
-                                                <a href="{{ url('/admin/personal/' . $personal->id . '/edit') }}"
+                                                    </i> Ver
+                                                    
+                                                </a>
+                                                <a href="{{ url('/admin/estudiantes/' . $estudiante->id . '/edit') }}"
                                                     class="btn btn-success btn-sm"> <i
                                                         class="fas fa-pencil-alt"></i>Editar</a>
 
-                                                <form action="{{ url('/admin/personal/' . $personal->id) }}" method="POST"
-                                                    id="miFormulario{{ $personal->id }}">
+                                                <form action="{{ url('/admin/estudiantes/' . $estudiante->id) }}"
+                                                    method="POST" id="miFormulario{{ $estudiante->id }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="preguntar{{ $personal->id }}(event)">
+                                                        onclick="preguntar{{ $estudiante->id }}(event)">
                                                         <i class="fas fa-trash"></i>Eliminar
                                                     </button>
                                                 </form>
                                                 <script>
-                                                    function preguntar{{ $personal->id }}(event) {
+                                                    function preguntar{{ $estudiante->id }}(event) {
                                                         event.preventDefault();
 
                                                         Swal.fire({
@@ -102,7 +100,7 @@
                                                         }).then((result) => {
                                                             if (result.isConfirmed) {
                                                                 // JavaScript puro para enviar el formulario
-                                                                document.getElementById('miFormulario{{ $personal->id }}').submit();
+                                                                document.getElementById('miFormulario{{ $estudiante->id }}').submit();
                                                             }
                                                         });
                                                     }
@@ -189,10 +187,10 @@
                 "pageLength": 5,
                 "language": {
                     "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando 0 a 0 de 0 registros",
-                    "infoFiltered": "(Filtrado de _MAX_ registros totales)",
-                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Estudiantes",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 Estudiantes",
+                    "infoFiltered": "(Filtrado de _MAX_ total Estudiantes)",
+                    "lengthMenu": "Mostrar _MENU_ Estudiantes",
                     "loadingRecords": "Cargando...",
                     "processing": "Procesando...",
                     "search": "Buscador:",

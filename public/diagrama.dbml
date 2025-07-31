@@ -78,4 +78,30 @@ Table Formaciones {
     archivo varchar
 }
 
+Table ppffs {
+    id int [pk, increment] // Primary key
+    nombres varchar
+    apellidos varchar
+    ci varchar
+    fecha_nacimiento date
+    telefono varchar
+    parentesco varchar
+    ocupacion varchar
+    direccion varchar
+}
 
+Table estudiantes {
+    id int [pk, increment] // Primary key
+    usuario_id int [ref:> user.id]
+    ppff_id int [ref:> ppffs.id]
+    nombres varchar
+    apellidos varchar
+    ci varchar
+    fecha_nacimiento date
+    direccion varchar
+    telefono varchar
+    foto varchar
+    genero varchar
+    estado_estudiante varchar
+
+}
