@@ -10,6 +10,8 @@ use App\Models\Grado;
 use App\Models\Paralelo;
 use App\Models\Turno;
 use App\Models\Personal;
+use App\Models\Ppff;
+use App\Models\Estudiante;
 use App\Models\User;
 
 
@@ -358,5 +360,186 @@ class DatabaseSeeder extends Seeder
             'profesion' => 'Lic. en Filosofía',
             'foto' => 'uploads/fotos/' . time() . '_sofia.jpg',
         ]);
+
+        // Crear padres/madres/tutores
+        $ppff1 = Ppff::create([
+            'nombres' => 'Ana Isabel',
+            'apellidos' => 'Quiroga',
+            'ci' => '30987654',
+            'fecha_nacimiento' => '1985-09-30',
+            'telefono' => '3814987654',
+            'parentesco' => 'Tía',
+            'ocupacion' => 'Administrativa',
+            'direccion' => 'Italia 456, Banda del Río Salí',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $ppff2 = Ppff::create([
+            'nombres' => 'Carlos Alberto',
+            'apellidos' => 'Pérez',
+            'ci' => '25111222',
+            'fecha_nacimiento' => '1975-11-03',
+            'telefono' => '3815123456',
+            'parentesco' => 'Padre',
+            'ocupacion' => 'Electricista',
+            'direccion' => 'Av. Sarmiento 456, Yerba Buena',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $ppff3 = Ppff::create([
+            'nombres' => 'María Laura',
+            'apellidos' => 'González',
+            'ci' => '30123456',
+            'fecha_nacimiento' => '1980-05-12',
+            'telefono' => '3814567890',
+            'parentesco' => 'Madre',
+            'ocupacion' => 'Docente',
+            'direccion' => 'Calle Falsa 123, San Miguel de Tucumán',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $ppff4 = Ppff::create([
+            'nombres' => 'Lucía Fernanda',
+            'apellidos' => 'Martínez',
+            'ci' => '33222333',
+            'fecha_nacimiento' => '1983-03-21',
+            'telefono' => '3814234567',
+            'parentesco' => 'Madre',
+            'ocupacion' => 'Enfermera',
+            'direccion' => 'Belgrano 789, Tafí Viejo',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $ppff5 = Ppff::create([
+            'nombres' => 'Jorge Luis',
+            'apellidos' => 'Ramírez',
+            'ci' => '28765432',
+            'fecha_nacimiento' => '1978-07-15',
+            'telefono' => '3815678901',
+            'parentesco' => 'Padre',
+            'ocupacion' => 'Contador',
+            'direccion' => 'Mitre 321, Concepción',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Lista de estudiantes con relación a cada PPFF
+        $estudiantes = [
+            [
+                'user' => [
+                    'name' => 'Gabriel Rodríguez Silva',
+                    'email' => 'gabriel.rodriguez@estudiante.com',
+                    'password' => '3344556',
+                ],
+                'estudiante' => [
+                    'nombres' => 'Gabriel',
+                    'apellidos' => 'Rodríguez Silva',
+                    'ci' => '3344556',
+                    'fecha_nacimiento' => '2007-03-12',
+                    'telefono' => '3813344556',
+                    'direccion' => 'Calle San Juan 123',
+                    'genero' => 'masculino',
+                    'ppff_id' => $ppff1->id,
+                ]
+            ],
+            [
+                'user' => [
+                    'name' => 'Lucía Fernández',
+                    'email' => 'lucia.fernandez@estudiante.com',
+                    'password' => '4455667',
+                ],
+                'estudiante' => [
+                    'nombres' => 'Lucía',
+                    'apellidos' => 'Fernández',
+                    'ci' => '4455667',
+                    'fecha_nacimiento' => '2008-06-22',
+                    'telefono' => '3814455667',
+                    'direccion' => 'Calle Maipú 456',
+                    'genero' => 'femenino',
+                    'ppff_id' => $ppff2->id,
+                ]
+            ],
+            [
+                'user' => [
+                    'name' => 'Juan Pablo Martínez',
+                    'email' => 'juan.martinez@estudiante.com',
+                    'password' => '5566778',
+                ],
+                'estudiante' => [
+                    'nombres' => 'Juan Pablo',
+                    'apellidos' => 'Martínez',
+                    'ci' => '5566778',
+                    'fecha_nacimiento' => '2006-11-08',
+                    'telefono' => '3815566778',
+                    'direccion' => 'Av. Belgrano 234',
+                    'genero' => 'masculino',
+                    'ppff_id' => $ppff3->id,
+                ]
+            ],
+            [
+                'user' => [
+                    'name' => 'Ana Belén Quiroga',
+                    'email' => 'ana.quiroga@estudiante.com',
+                    'password' => '6677889',
+                ],
+                'estudiante' => [
+                    'nombres' => 'Ana Belén',
+                    'apellidos' => 'Quiroga',
+                    'ci' => '6677889',
+                    'fecha_nacimiento' => '2007-01-30',
+                    'telefono' => '3816677889',
+                    'direccion' => 'Calle Mendoza 999',
+                    'genero' => 'femenino',
+                    'ppff_id' => $ppff4->id,
+                ]
+            ],
+            [
+                'user' => [
+                    'name' => 'Tomás González',
+                    'email' => 'tomas.gonzalez@estudiante.com',
+                    'password' => '7788990',
+                ],
+                'estudiante' => [
+                    'nombres' => 'Tomás',
+                    'apellidos' => 'González',
+                    'ci' => '7788990',
+                    'fecha_nacimiento' => '2009-09-17',
+                    'telefono' => '3817788990',
+                    'direccion' => 'Calle Córdoba 321',
+                    'genero' => 'masculino',
+                    'ppff_id' => $ppff5->id,
+                ]
+            ],
+        ];
+
+        foreach ($estudiantes as $data) {
+            $user = User::create([
+                'name' => $data['user']['name'],
+                'email' => $data['user']['email'],
+                'password' => Hash::make($data['user']['password']),
+            ]);
+
+            $user->assignRole('ESTUDIANTE');
+
+            Estudiante::create([
+                'usuario_id' => $user->id,
+                'ppff_id' => $data['estudiante']['ppff_id'],
+                'nombres' => $data['estudiante']['nombres'],
+                'apellidos' => $data['estudiante']['apellidos'],
+                'ci' => $data['estudiante']['ci'],
+                'fecha_nacimiento' => $data['estudiante']['fecha_nacimiento'],
+                'telefono' => $data['estudiante']['telefono'],
+                'direccion' => $data['estudiante']['direccion'],
+                'foto' => 'uploads/fotos/estudiantes/default.jpg',
+                'genero' => $data['estudiante']['genero'],
+                'estado_estudiante' => 'activo',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

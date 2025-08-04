@@ -388,22 +388,27 @@ return [
         ],
 
         [
+            'text' => 'Padres de familia',
+            'icon' => 'fas fa-fw fa-house-user',
+            'classes' => 'bg-blue text-white',
+            'url' => 'admin/ppffs',
+        ],
+
+        [
             'text' => 'Estudiantes',
             'icon' => 'fas fa-fw fa-user-graduate',
             'classes' => 'bg-blue text-white',
-            'submenu' => [
-                [
-                    'text' => 'Nuevos estudiantes',
-                    'url' => 'admin/estudiantes',
-                    'classes' => 'bg-white text-black',
-                ],
-                [
-                    'text' => 'Matriculacion',
-                    'url' => 'admin/estudiantes/matriculacion',
-                    'classes' => 'bg-white text-black',
-                ],
-            ],
+            'url' => 'admin/estudiantes',
         ],
+
+
+        [
+            'text' => 'Matriculaciones',
+            'icon' => 'fas fa-fw fa-clipboard-list',
+            'classes' => 'bg-blue text-white',
+            'url' => 'admin/matriculaciones',
+        ],
+
     ],
 
     /*

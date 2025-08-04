@@ -105,3 +105,15 @@ Table estudiantes {
     estado_estudiante varchar
 
 }
+
+
+Table matriculaciones{
+    id int [pk, increment]
+    estudiante_id int [ref:> estudiantes.id]
+    turno_id int [ref:> turnos.id]
+    gestion_id int [ref:> gestion_id]
+    nivel_id int [ref:> niveles.id]
+    grado_id int [ref:> grado.id]
+    paralelo_id int [ref:> paralelo.id]
+
+}

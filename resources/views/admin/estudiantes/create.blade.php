@@ -101,59 +101,113 @@
                                                             @csrf
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Nombres</label>
+                                                                    <label for="">Nombres</label><b> (*)</b>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i
+                                                                                    class="fas fa-fw fa-user"></i></span>
+                                                                        </div>
                                                                         <input type="text" class="form-control"
-                                                                            name="nombres" required>
+                                                                            value="{{ old('name') }}" name="name"
+                                                                            placeholder="Escriba los nombres aqui.."
+                                                                            required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="">Apellidos</label><b> (*)</b>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i
+                                                                                    class="fas fa-fw fa-user"></i></span>
+                                                                        </div>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ old('apellidos') }}"
+                                                                            name="apellidos"
+                                                                            placeholder="Escriba los apellidos aqui..."
+                                                                            required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="">Apellidos</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="apellidos" required>
+                                                                        <label for="">Carnet de
+                                                                            identidad</label><b> (*)</b>
+                                                                        <div class="input-group mb-3">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text"> <i
+                                                                                        class="fas fa-id-card"></i></span>
+                                                                            </div>
+                                                                            <input type="text" class="form-control"
+                                                                                value="{{ old('ci') }}"
+                                                                                name="ci"
+                                                                                placeholder="Ingrese el numero de ci.."
+                                                                                required>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Carnet de identidad</label>
+                                                                    <label for="">Fecha de
+                                                                        nacimiento</label><b> (*)</b>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i
+                                                                                    class="fas fa-fw fa-calendar"></i></span>
+                                                                        </div>
                                                                         <input type="text" class="form-control"
-                                                                            name="ci" required>
+                                                                            value="{{ old('fecha_nacimiento') }}"
+                                                                            name="fecha_nacimiento"
+                                                                            placeholder="Escriba aqui.." required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Fecha de nacimiento</label>
-                                                                        <input type="date" class="form-control"
-                                                                            name="fecha_nacimiento" required>
+                                                                    <label for="">Telefono</label><b> (*)</b>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i
+                                                                                    class="fas fa-fw fa-phone"></i></span>
+                                                                        </div>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{ old('telefono') }}" name="telefono"
+                                                                            placeholder="Escriba aqui.." required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Telefono</label>
+                                                                    <label for="">Parentesco</label><b> (*)</b>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i
+                                                                                    class="fas fa-fw fa-users"></i></span>
+                                                                        </div>
                                                                         <input type="text" class="form-control"
-                                                                            name="telefono" required>
+                                                                            value="{{ old('parentesco') }}"
+                                                                            name="parentesco"
+                                                                            placeholder="Ingrese el parentesco..."
+                                                                            required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Parentesco</label>
+                                                                    <label for="">Ocupacion</label><b> (*)</b>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i
+                                                                                    class="fas fa-fw fa-user"></i></span>
+                                                                        </div>
                                                                         <input type="text" class="form-control"
-                                                                            name="parentesco">
+                                                                            value="{{ old('ocupacion') }}"
+                                                                            name="ocupacion" placeholder="Escriba aqui.."
+                                                                            required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Ocupacion</label>
+                                                                    <label for="">Direccion</label><b> (*)</b>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"> <i
+                                                                                    class="fas fa-fw fa-map"></i></span>
+                                                                        </div>
                                                                         <input type="text" class="form-control"
-                                                                            name="ocupacion">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="">Direccion</label>
-                                                                        <input type="text" class="form-control"
-                                                                            name="direccion">
+                                                                            value="{{ old('direccion') }}"
+                                                                            name="direccion" placeholder="Escriba aqui.."
+                                                                            required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -265,13 +319,12 @@
                     <h3 class="card-title">Ingrese los datos del estudiante en el formulario</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.estudiantes.create') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('admin.estudiantes.create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                    
-                            <input type="text" name="ppff_id" id="ppff_id" hidden>
-                       
+
+                        <input type="text" name="ppff_id" id="ppff_id" hidden>
+
                         <div class="row">
                             <div class="col-md-4 position-relative" style="padding-bottom: 110px;">
                                 <!-- altura fija para reservar espacio -->

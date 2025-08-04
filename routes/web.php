@@ -15,8 +15,8 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PpffController;
+use App\Http\Controllers\MatriculacionController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -187,19 +187,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/estudiantes', [EstudianteController::class, 'index'])->name('admin.estudiantes.index');
     Route::get('/admin/estudiantes/create', [EstudianteController::class, 'create'])->name('admin.estudiantes.create');
     Route::post('/admin/estudiantes/create', [EstudianteController::class, 'store'])->name('admin.estudiantes.store');
-    Route::get('/admin/estudiantes/{id}',[EstudianteController::class, 'show'])->name('admin.estudiantes.show');
-    Route::get('/admin/estudiantes/{id}/edit',[EstudianteController::class,'edit'])->name('admin.estudiantes.edit');
-    Route::put('/admin/estudiantes/{id}',[EstudianteController::class,'update'])->name('admin.estudiantes.update');
-    Route::delete('/admin/estudiantes/{id}',[EstudianteController::class,'destroy'])->name('admin.estudiantes.destroy');
-    
+    Route::get('/admin/estudiantes/{id}', [EstudianteController::class, 'show'])->name('admin.estudiantes.show');
+    Route::get('/admin/estudiantes/{id}/edit', [EstudianteController::class, 'edit'])->name('admin.estudiantes.edit');
+    Route::put('/admin/estudiantes/{id}', [EstudianteController::class, 'update'])->name('admin.estudiantes.update');
+    Route::delete('/admin/estudiantes/{id}', [EstudianteController::class, 'destroy'])->name('admin.estudiantes.destroy');
 });
 
-//Ruta para registrar al padre de familia del estudiante
+//Ruta para padre de familia del estudiante
 
 Route::middleware('auth')->group(function () {
+    Route::get('/admin/ppffs/', [PpffController::class, 'index'])->name('admin.ppffs.index');
+    Route::post('/admin/estudiantes/ppff/create', [PpffController::class, 'store'])->name('admin.estudiantes.ppffs.store');
+    Route::get('/admin/ppffs/create', [PpffController::class, 'create'])->name('admin.ppffs.create');
 
-    Route::post('/admin/estudiantes/ppff/create', [PpffController::class, 'store'])->name('admin.ppffs.store');
-    
-    
+    Route::post('/admin/ppffs/create', [PpffController::class, 'store_ppff'])->name('admin.ppffs.store');
 
+    Route::get('/admin/ppffs/{id}', [PpffController::class, 'show'])->name('admin.ppffs.show');
+    Route::get('/admin/ppffs/{id}/edit', [PpffController::class, 'edit'])->name('admin.pffs.edit');
+    Route::put('/admin/ppffs/{id}',[PpffController::class, 'update'])->name('admin.ppffs.update');
+    Route::delete('/admin/ppffs/{id}', [PpffController::class, 'destroy'])->name('admin.ppffs.destroy');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/matriculaciones', [MatriculacionController::class, 'index'])->name('admin.matriculaciones.index');
+    Route::post('/admin/matriculaciones/index', [MatriculacionController::class, 'store'])->name('admin.matriculaciones.store');
 });

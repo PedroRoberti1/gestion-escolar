@@ -11,10 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('estudiantes', function (Blueprint $table) {
-            // Agrega la columna 'direccion' después de 'telefono'
-           // $table->string('direccion')->after('telefono');
-        });
+        //
     }
 
     /**
@@ -22,8 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('estudiantes', function (Blueprint $table) {
-            $table->dropColumn('direccion');
-        });
+        //
     }
 };
