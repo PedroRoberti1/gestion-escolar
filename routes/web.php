@@ -16,6 +16,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\PpffController;
 use App\Http\Controllers\MatriculacionController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,13 +30,14 @@ Auth::routes(['register' => false]);
 // Se protege con el middleware 'auth' para que solo usuarios autenticados puedan acceder.
 // Se le asigna el nombre 'admin.index.home' para poder generar enlaces con route('admin.index.home')
 
-Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index.home')->middleware('auth');
+Route::get('/home', [AdminController::class, 'index'])->name('admin.index.home')->middleware('auth');
+
 
 // Ruta que apunta a /admin y también muestra el dashboard del administrador.
 // Es idéntica a la anterior en funcionalidad, pero con una URL y nombre de ruta diferentes.
 // Se usa para permitir múltiples accesos al mismo contenido y reutilizar el método del controlador.
 // Se le asigna el nombre 'admin.index' para usar con route('admin.index')
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
 
 //rutas para Las configuraciones del sistema 
@@ -204,7 +206,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/ppffs/{id}', [PpffController::class, 'show'])->name('admin.ppffs.show');
     Route::get('/admin/ppffs/{id}/edit', [PpffController::class, 'edit'])->name('admin.pffs.edit');
-    Route::put('/admin/ppffs/{id}',[PpffController::class, 'update'])->name('admin.ppffs.update');
+    Route::put('/admin/ppffs/{id}', [PpffController::class, 'update'])->name('admin.ppffs.update');
     Route::delete('/admin/ppffs/{id}', [PpffController::class, 'destroy'])->name('admin.ppffs.destroy');
 });
 
@@ -212,5 +214,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/matriculaciones', [MatriculacionController::class, 'index'])->name('admin.matriculaciones.index');
-    Route::post('/admin/matriculaciones/index', [MatriculacionController::class, 'store'])->name('admin.matriculaciones.store');
+
+    Route::get('/admin/matriculaciones/create', [MatriculacionController::class, 'create'])->name('admin.matriculaciones.create');
+
+    Route::post('/admin/matriculaciones/create', [MatriculacionController::class, 'store'])->name('admin.matriculaciones.store');
+
+    Route::get('admin/matriculaciones/buscar_estudiante/{id}', [MatriculacionController::class, 'buscar_estudiante'])->name('admin.matriculaciones.buscar_estudiante');
 });

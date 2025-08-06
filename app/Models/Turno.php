@@ -11,4 +11,12 @@ class Turno extends Model
         'nombre',
     ];
 
+
+    
+
+    public function matriculaciones()
+    {
+        return $this->hasMany(Matriculacion::class);
+    }
+
 }

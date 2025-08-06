@@ -17,4 +17,11 @@ class Paralelo extends Model
     public function grado(){
         return $this->belongsTo(Grado::class, 'id_curso');
     }
+
+
+    
+    public function matriculaciones()
+    {
+        return $this->hasMany(Matriculacion::class);
+    }
 }

@@ -16,4 +16,12 @@ class Nivel extends Model
     {
         return $this->hasMany(Grado::class);
     }
+
+
+    
+    public function matriculaciones()
+    {
+        return $this->hasMany(Matriculacion::class);
+    }
+    
 }
