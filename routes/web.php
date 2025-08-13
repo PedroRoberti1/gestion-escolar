@@ -220,4 +220,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/matriculaciones/create', [MatriculacionController::class, 'store'])->name('admin.matriculaciones.store');
 
     Route::get('admin/matriculaciones/buscar_estudiante/{id}', [MatriculacionController::class, 'buscar_estudiante'])->name('admin.matriculaciones.buscar_estudiante');
+
+    Route::get('admin/matriculaciones/buscar_grado/{id}', [MatriculacionController::class, 'buscar_grados'])->name('admin.matriculaciones.buscar_grados');
+
+    Route::get('admin/matriculaciones/buscar_paralelo/{id}', [MatriculacionController::class, 'buscar_paralelos'])->name('admin.matriculaciones.buscar_paralelos');
+
+    Route::get('admin/matriculaciones/pdf/{id}', [MatriculacionController::class, 'pdf_matricula'])->name('admin.matriculaciones.pdf_matricula');
+
+    Route::get('admin/matriculaciones/{id}', [MatriculacionController::class, 'show'])->name('admin.matriculaciones.show');
+
+    Route::get('/admin/matriculaciones/{id}/edit', [MatriculacionController::class, 'edit'])->name('admin.matriculaciones.edit');
+
+    Route::put('/admin/matriculaciones/{id}', [MatriculacionController::class, 'update'])->name('admin.matriculaciones.update');
+
+    Route::delete('/admin/matriculaciones/{id}',[MatriculacionController::class, 'destroy'])->name('admin.matriculaciones.destroy');
+
+
 });

@@ -2,7 +2,7 @@
 
 
 @section('content_header')
-    <h1><b>Creacion de una nueva matriculacion del estudiante</b></h1>
+    <h1><b>Datos de la matriculacion del estudiante</b></h1>
     <hr>
 @stop
 
@@ -17,120 +17,88 @@
                     <form action="{{ url('/admin/gestiones/create') }}" method="POST">
                         @csrf
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="">Buscar estudiante:</label><b> (*)</b>
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"> <i class="fas fa-users"></i></span>
-                                                </div>
-                                                <select name="estudiantes" id="buscar_estudiante"
-                                                    class="form-control select2">
-                                                    <option value="">Selecciona un estudiante...</option>
-                                                    @foreach ($estudiantes as $estudiante)
-                                                        <option value="{{ $estudiante->id }}">
-                                                            {{ $estudiante->apellidos . ' ' . $estudiante->nombres . ' - ' . $estudiante->ci }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            @error('nombre')
-                                                <small style="color: red"> {{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
 
+
+
+                        <div class="row" id="datos_estudiante">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="">fotografia</label>
+                                        <center>
+                                            <img src="{{ url($matriculaciones->estudiante->foto) }}" width="70%"
+                                                id="foto" alt="">
+                                        </center>
+                                    </div>
                                 </div>
 
-                            </div>
+                                <div class="col-md-9">
 
-
-                            <div class="row" id="datos_estudiante" style="display: none">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="">fotografia</label>
-                                            <center>
-                                                <img src="" width="70%" id="foto" alt="">
-                                            </center>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Apellidos</label>
+                                                <p id="apellidos">{{ $matriculaciones->estudiante->apellidos }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-9">
-
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Apellidos</label>
-                                                    <p id="apellidos">n</p>
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Nombres</label>
+                                                <p id="nombres">{{ $matriculaciones->estudiante->nombres }}</p>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Nombres</label>
-                                                    <p id="nombres">n</p>
-                                                </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Carnet de identidad</label>
+                                                <p id="ci">{{ $matriculaciones->estudiante->ci }}</p>
                                             </div>
+                                        </div>
 
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Carnet de identidad</label>
-                                                    <p id="ci">ci</p>
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Fecha de nacimiento</label>
+                                                <p id="fecha_nacimiento">
+                                                    {{ $matriculaciones->estudiante->fecha_nacimiento }}</p>
                                             </div>
+                                        </div>
 
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Fecha de nacimiento</label>
-                                                    <p id="fecha_nacimiento">a</p>
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Telefono</label>
+                                                <p id="telefono">{{ $matriculaciones->estudiante->telefono }}</p>
                                             </div>
+                                        </div>
 
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Telefono</label>
-                                                    <p id="telefono">a</p>
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Direccion</label>
+                                                <p id="direccion">{{ $matriculaciones->estudiante->direccion }}</p>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Direccion</label>
-                                                    <p id="direccion">a</p>
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Correo electronico</label>
+                                                <p id="email">{{ $matriculaciones->estudiante->usuario->email }}</p>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Correo electronico</label>
-                                                    <p id="email">a</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="">Genero</label>
-                                                    <p id="genero">a</p>
-                                                </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="">Genero</label>
+                                                <p id="genero">{{ $matriculaciones->estudiante->genero }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
 
 
                         </div>
-
-
-
                         <hr>
 
                     </form>
@@ -145,7 +113,29 @@
                         <h3 class="card-title">Historial academico</h3>
                     </div>
                     <div class="card-body">
-                        <div id="tabla_historial"> </div>
+                        <table class="table table-bordered">
+                            <thead>
+
+                                <tr>
+                                    <th>Turno</th>
+                                    <th>Gestión</th>
+                                    <th>Nivel</th>
+                                    <th>Grado</th>
+                                    <th>Paralelo</th>
+                                </tr>
+                            <tbody>
+                                @foreach ($matriculaciones->estudiante->matriculaciones as $datos)
+                                    <tr>
+                                        <td>{{ $datos->turno->nombre }}</td>
+                                        <td>{{ $datos->gestion->nombre }}</td>
+                                        <td>{{ $datos->nivel->nombre }}</td>
+                                        <td>{{ $datos->grado->nombre }}</td>
+                                        <td>{{ $datos->paralelo->nombre }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            </thead>
+                        </table>
                     </div>
 
                 </div>
@@ -166,18 +156,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Turno</label> <b>(*)</b>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fas fa-clock"></i></span>
-                                        </div>
-                                        <select name="turno_id" id="turno_id" class="form-control" required>
-                                            <option value="">Seleccione un turno...</option>
-                                            @foreach ($turnos as $turno)
-                                                <option value="{{ $turno->id }}">{{ $turno->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    @error('nombre')
+                                    <p>{{ $matriculaciones->turno->nombre }}</p>
+                                    @error('turno_id')
                                         <small style="color: coral">{{ $message }}</small>
                                     @enderror
                                 </div>
@@ -186,39 +166,22 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Gestiones </label> <b>(*)</b>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fas fa-university"></i></span>
-                                        </div>
-                                        <select name="gestion_id" id="" class="form-control" required>
-                                            <option value="">Seleccione una gestion...</option>
-                                            @foreach ($gestiones as $gestion)
-                                                <option value="{{ $gestion->id }}">{{ $gestion->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <p>{{ $matriculaciones->gestion->nombre }}</p>
+
                                     @error('gestion_id')
                                         <small style="color: coral">{{ $message }}</small>
                                     @enderror
                                 </div>
 
                             </div>
+
                         </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Niveles </label> <b>(*)</b>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fas fa-layer-group"></i></span>
-                                        </div>
-                                        <select name="nivel_id" id="nivel_id" class="form-control" required>
-                                            <option value="">Seleccione un nivel...</option>
-                                            @foreach ($niveles as $nivel)
-                                                <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <p>{{ $matriculaciones->nivel->nombre }}</p>
                                     @error('nivel_id')
                                         <small style="color: coral">{{ $message }}</small>
                                     @enderror
@@ -229,15 +192,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Grados </label> <b>(*)</b>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fas fa-list-alt"></i></span>
-                                        </div>
-                                        <select name="grado_id" id="grados" class="form-control" required>
-                                            <option value="">Primero seleccione un nivel...</option>
-
-                                        </select>
-                                    </div>
+                                    <p>{{ $matriculaciones->grado->nombre }}</p>
                                     @error('grado_id')
                                         <small style="color: coral">{{ $message }}</small>
                                     @enderror
@@ -247,15 +202,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Paralelos </label> <b>(*)</b>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fas fa-clone"></i></span>
-                                        </div>
-                                        <select name="paralelo_id" id="paralelos" class="form-control" required>
-                                            <option value="">Primero seleccione un paralelo...</option>
-
-                                        </select>
-                                    </div>
+                                    <p>{{ $matriculaciones->paralelo->nombre }}</p>
                                     @error('paralelo_id')
                                         <small style="color: coral">{{ $message }}</small>
                                     @enderror
@@ -266,12 +213,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Fecha </label> <b>(*)</b>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fas fa-calendar"></i></span>
-                                        </div>
-                                        <input type="date" class="form-control" name="fecha_matriculacion" required>
-                                    </div>
+                                    <p>{{ $matriculaciones->fecha_matriculacion }}</p>
                                     @error('paralelo_id')
                                         <small style="color: coral">{{ $message }}</small>
                                     @enderror
@@ -285,9 +227,8 @@
                                 <div class="form-group">
                                     <a href="{{ url('/admin/matriculaciones') }}" class="btn btn-default"> <i
                                             class="fas fa-arrow-left">
-                                        </i> cancelar</a>
-                                    <button type="submit" class="btn btn-primary"> <i
-                                            class="fas fa-save"></i>Guardar</button>
+                                        </i> Volver</a>
+
                                 </div>
                             </div>
                         </div>

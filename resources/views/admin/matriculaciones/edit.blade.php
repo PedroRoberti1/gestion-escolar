@@ -2,19 +2,19 @@
 
 
 @section('content_header')
-    <h1><b>Creacion de una nueva matriculacion del estudiante</b></h1>
+    <h1><b>Editar la matriculacion del estudiante seleccionado</b></h1>
     <hr>
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <div class="card card-primary">
+            <div class="card card-success">
                 <div class="card-header">
                     <h3 class="card-title">Datos del estudiante</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('/admin/gestiones/create') }}" method="POST">
+                    <form action="{{ url('/admin/gestiones/edit') }}" method="POST">
                         @csrf
 
                         <div class="row">
@@ -31,7 +31,8 @@
                                                     class="form-control select2">
                                                     <option value="">Selecciona un estudiante...</option>
                                                     @foreach ($estudiantes as $estudiante)
-                                                        <option value="{{ $estudiante->id }}">
+                                                        <option value="{{ $estudiante->id }}"
+                                                            {{ $matriculaciones->estudiante_id == $estudiante->id ? 'selected' : '' }}>
                                                             {{ $estudiante->apellidos . ' ' . $estudiante->nombres . ' - ' . $estudiante->ci }}
                                                         </option>
                                                     @endforeach
@@ -48,13 +49,14 @@
                             </div>
 
 
-                            <div class="row" id="datos_estudiante" style="display: none">
+                            <div class="row" id="datos_estudiante">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">fotografia</label>
                                             <center>
-                                                <img src="" width="70%" id="foto" alt="">
+                                                <img src="{{ url($matriculaciones->estudiante->foto) }}" width="70%"
+                                                    id="foto" alt="">
                                             </center>
                                         </div>
                                     </div>
@@ -65,13 +67,13 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Apellidos</label>
-                                                    <p id="apellidos">n</p>
+                                                    <p id="apellidos">{{ $matriculaciones->estudiante->apellidos }}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Nombres</label>
-                                                    <p id="nombres">n</p>
+                                                    <p id="nombres">{{ $matriculaciones->estudiante->nombres }}</p>
                                                 </div>
                                             </div>
 
@@ -79,7 +81,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Carnet de identidad</label>
-                                                    <p id="ci">ci</p>
+                                                    <p id="ci">{{ $matriculaciones->estudiante->ci }}</p>
                                                 </div>
                                             </div>
 
@@ -87,7 +89,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Fecha de nacimiento</label>
-                                                    <p id="fecha_nacimiento">a</p>
+                                                    <p id="fecha_nacimiento">
+                                                        {{ $matriculaciones->estudiante->fecha_nacimiento }}</p>
                                                 </div>
                                             </div>
 
@@ -95,28 +98,29 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Telefono</label>
-                                                    <p id="telefono">a</p>
+                                                    <p id="telefono">{{ $matriculaciones->estudiante->telefono }}</p>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Direccion</label>
-                                                    <p id="direccion">a</p>
+                                                    <p id="direccion">{{ $matriculaciones->estudiante->direccion }}</p>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Correo electronico</label>
-                                                    <p id="email">a</p>
+                                                    <p id="email">{{ $matriculaciones->estudiante->usuario->email }}
+                                                    </p>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="">Genero</label>
-                                                    <p id="genero">a</p>
+                                                    <p id="genero">{{ $matriculaciones->estudiante->genero }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,14 +144,39 @@
                 <!-- /.card-body -->
             </div>
             <div class="col-md-12">
-                <div class="card card-primary">
+                <div class="card card-success">
                     <div class="card-header">
                         <h3 class="card-title">Historial academico</h3>
                     </div>
                     <div class="card-body">
                         <div id="tabla_historial"> </div>
-                    </div>
+                        <div id="tabla_bd">
 
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Turno</th>
+                                        <th>Gestion</th>
+                                        <th>Nivel</th>
+                                        <th>Grado</th>
+                                        <th>Paralelo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($matriculaciones->estudiante->matriculaciones as $datos)
+                                        <tr>
+                                            <td>{{ $datos->turno->nombre }}</td>
+                                            <td>{{ $datos->gestion->nombre }}</td>
+                                            <td>{{ $datos->nivel->nombre }}</td>
+                                            <td>{{ $datos->grado->nombre }}</td>
+                                            <td>{{ $datos->paralelo->nombre }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /.card -->
@@ -159,9 +188,11 @@
                     <h3 class="card-title">LLene los datos del formulario</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('/admin/matriculaciones/create') }}" method="POST">
+                    <form action="{{ url('/admin/matriculaciones/' . $matriculaciones->id) }}" method="POST">
                         @csrf
-                        <input type="text" name="estudiante_id" id="estudiante_id" hidden required>
+                        @method('PUT')
+                        <input type="text" value="{{ $matriculaciones->estudiante->id }}" name="estudiante_id"
+                            id="estudiante_id" required hidden>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -173,7 +204,9 @@
                                         <select name="turno_id" id="turno_id" class="form-control" required>
                                             <option value="">Seleccione un turno...</option>
                                             @foreach ($turnos as $turno)
-                                                <option value="{{ $turno->id }}">{{ $turno->nombre }}</option>
+                                                <option value="{{ $turno->id }}"
+                                                    {{ $matriculaciones->turno_id == $turno->id ? 'selected' : '' }}>
+                                                    {{ $turno->nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -193,7 +226,9 @@
                                         <select name="gestion_id" id="" class="form-control" required>
                                             <option value="">Seleccione una gestion...</option>
                                             @foreach ($gestiones as $gestion)
-                                                <option value="{{ $gestion->id }}">{{ $gestion->nombre }}</option>
+                                                <option value="{{ $gestion->id }}"
+                                                    {{ $matriculaciones->gestion_id == $gestion->id ? 'selected' : '' }}>
+                                                    {{ $gestion->nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -215,7 +250,9 @@
                                         <select name="nivel_id" id="nivel_id" class="form-control" required>
                                             <option value="">Seleccione un nivel...</option>
                                             @foreach ($niveles as $nivel)
-                                                <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
+                                                <option value="{{ $nivel->id }}"
+                                                    {{ $matriculaciones->nivel_id == $nivel->id ? 'selected' : '' }}>
+                                                    {{ $nivel->nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -234,8 +271,12 @@
                                             <span class="input-group-text"> <i class="fas fa-list-alt"></i></span>
                                         </div>
                                         <select name="grado_id" id="grados" class="form-control" required>
-                                            <option value="">Primero seleccione un nivel...</option>
 
+                                            @foreach ($grados as $grado)
+                                                <option value="{{ $grado->id }}"
+                                                    {{ $matriculaciones->grado_id == $grado->id ? 'selected' : '' }}>
+                                                    {{ $grado->nombre }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     @error('grado_id')
@@ -252,7 +293,9 @@
                                             <span class="input-group-text"> <i class="fas fa-clone"></i></span>
                                         </div>
                                         <select name="paralelo_id" id="paralelos" class="form-control" required>
-                                            <option value="">Primero seleccione un paralelo...</option>
+                                            @foreach ($paralelos as $paralelo)
+                                                <option value="{{$paralelo->id}}"{{$matriculaciones->paralelo_id == $paralelo->id ? 'selected': ""}}>{{$paralelo->nombre}}</option>
+                                            @endforeach                                           
 
                                         </select>
                                     </div>
@@ -286,8 +329,8 @@
                                     <a href="{{ url('/admin/matriculaciones') }}" class="btn btn-default"> <i
                                             class="fas fa-arrow-left">
                                         </i> cancelar</a>
-                                    <button type="submit" class="btn btn-primary"> <i
-                                            class="fas fa-save"></i>Guardar</button>
+                                    <button type="submit" class="btn btn-success"> <i
+                                            class="fas fa-save"></i>Actualizar</button>
                                 </div>
                             </div>
                         </div>
@@ -412,7 +455,9 @@
 
                             // Inserta la tabla en el contenedor correspondiente
                             $('#tabla_historial').html(tabla).show();
+                            $('#tabla_bd').css('display', 'none');
                         } else {
+                            $('#tabla_bd').css('display', 'none');
                             // Si no hay historial, muestra un mensaje
                             $('#tabla_historial').html(
                                     '<p>No hay historial académico registrado del estudiante.</p>')

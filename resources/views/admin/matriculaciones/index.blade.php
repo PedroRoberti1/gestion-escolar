@@ -18,8 +18,7 @@
                     <div class="card-tools">
 
                         <div class="card-tools">
-                            <a href="{{ url('/admin/matriculaciones/create') }}" method="post"
-                                class="btn btn-primary">Crear
+                            <a href="{{ url('/admin/matriculaciones/create') }}" method="post" class="btn btn-primary">Crear
                                 nuevo</a>
                         </div>
 
@@ -53,15 +52,31 @@
                                 @foreach ($matriculaciones as $matriculacion)
                                     <tr>
                                         <td style="text-align: cemter">{{ $loop->iteration }}</td>
+                                        <td style="text-align: cemter">
+                                            {{ $matriculacion->estudiante->nombres . ' ' . $matriculacion->estudiante->apellidos }}
+                                        </td>
+                                        <td style="text-align: cemter">{{ $matriculacion->estudiante->ci }}</td>
+                                        <td style="text-align: cemter">{{ $matriculacion->turno->nombre }}</td>
+                                        <td style="text-align: cemter">{{ $matriculacion->gestion->nombre }}</td>
+                                        <td style="text-align: cemter">{{ $matriculacion->nivel->nombre }}</td>
+                                        <td style="text-align: cemter">{{ $matriculacion->grado->nombre }}</td>
+                                        <td style="text-align: cemter">{{ $matriculacion->Paralelo->nombre }}</td>
+                                        <td style="text-align: cemter">{{ $matriculacion->fecha_matriculacion }}</td>
 
 
                                         <td class="text">
                                             <div class="row d-flex justify-content-center">
-                                                <a href="{{url('/admin/matriculaciones/'.$matriculacion->id)}}"
-                                                    class="btn btn-grey btn-sm"><i class="fas fa-eye">
+                                                <a href="{{ url('/admin/matriculaciones/pdf/' . $matriculacion->id) }}"
+                                                    class="btn btn-secondary btn-sm"><i class="fas fa-print">
+
+                                                    </i> Matricula
+
+                                                </a>
+                                                <a href="{{ url('/admin/matriculaciones/' . $matriculacion->id) }}"
+                                                    class="btn btn-warning btn-sm"><i class="fas fa-eye">
 
                                                     </i> Ver
-                                                    
+
                                                 </a>
                                                 <a href="{{ url('/admin/matriculaciones/' . $matriculacion->id . '/edit') }}"
                                                     class="btn btn-success btn-sm"> <i
