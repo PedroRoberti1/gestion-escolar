@@ -25,4 +25,11 @@ class Gestion extends Model
     {
         return $this->hasMany(Matriculacion::class);
     }
+
+
+    public function asignacion()
+    {
+        return $this->hasMany(Asignacion::class);
+    }
+
 }

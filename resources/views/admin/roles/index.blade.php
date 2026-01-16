@@ -49,6 +49,9 @@
 
                                     <td class="text">
                                         <div class="row d-flex justify-content-center">
+                                            <a href="{{ url('/admin/roles/' . $rol->id . '/permisos') }}"
+                                                class="btn btn-warning btn-sm"> <i class="fas fa-check"></i>Permisos
+                                            </a>
                                             <a href="{{ url('/admin/roles/' . $rol->id . '/edit') }}"
                                                 class="btn btn-success btn-sm"> <i class="fas fa-pencil-alt"></i>Editar</a>
 

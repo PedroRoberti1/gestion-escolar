@@ -33,4 +33,10 @@ class Personal extends Model
         return $this->hasMany(Formacion::class);
     }
 
+    public function asignaciones()
+    {
+        return $this->hasMany(Asignacion::class);
+    }
+
+    
 }
