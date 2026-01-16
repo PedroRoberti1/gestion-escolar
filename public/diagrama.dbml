@@ -117,20 +117,3 @@ Table matriculaciones{
     paralelo_id int [ref:> paralelo.id]
 
 }
-
-
-
-Table asignaciones {
-    id int[pk, increment] // Primary key
-    docente_id int [ref: > personals.id]
-    gestion_id int [ref: > gestiones.id]
-    nivel_id int [ref: > niveles.id]
-    grado_id int [ref: > grados.id]
-    paralelo_id int [ref: > paralelos.id]
-    materia_id int [ref:> materias.id]
-    turno_id int [ref: > turnos.id]
-    estado varchar
-    fecha_asignacion date
-
-
-}
